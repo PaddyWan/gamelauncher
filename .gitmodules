@@ -1,0 +1,11 @@
+[submodule "imgui"]
+  path = imgui
+  url = https://github.com/ocornut/imgui.git
+
+[submodule "libxdgbasedir"]
+  path = libxdgbasedir
+  url = https://github.com/emcrisostomo/libxdgbasedir.git
+
+[submodule "stb"]
+  path = stb
+  url = https://github.com/nothings/stb.git
