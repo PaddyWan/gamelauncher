@@ -11,6 +11,7 @@ set(IMGUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/imgui)
     src/texture.cpp
     src/config.cpp
     src/arg.cpp
+    src/cache.cpp
   )
 set(IMGUI_SOURCES
   ${IMGUI_DIR}/imgui.cpp

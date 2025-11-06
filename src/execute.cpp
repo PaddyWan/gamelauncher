@@ -3,7 +3,7 @@
 #include <cstring>
 #include <unistd.h>
 
-//todo this makes it linux only
+//todo this makes it linux only, look into _spawnvp
 void execute(const vector<string>& arg)
 {
     if(fork() == 0)

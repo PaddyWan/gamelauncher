@@ -1,11 +1,13 @@
 #include "GUI.hpp"
 
+#include <thread>
 
 #include <libxdgbasedir/libxdgbasedir.h>
 
 #include "imgui_additions.hpp"
 #include "execute.hpp"
 #include "texture.hpp"
+#include "cache.hpp"
 
 constexpr static int ICON_EDGE = 20;
 constexpr static int BANNER_HEIGHT = 100;
@@ -77,6 +79,41 @@ void GUI::run()
                 ImGui::Spinner("##spinner", 8, 4, col);
                 --hasclicked;
             }
+	    if(!entryarray[selected].directory.empty())
+	    {
+		if(ImGui::Button("Cache All"))
+		{
+		    std::thread t([this]()
+		    {
+			hasclicked_cache[0] = true;
+			load_cache_files(entryarray[selected].directory);
+			hasclicked_cache[0] = false;
+		    });
+		    t.detach();
+		}
+		if(hasclicked_cache[0])
+		{
+		    ImGui::SameLine(0, 1 * ImGui::GetStyle().ItemSpacing.x);
+		    const ImU32 col = ImGui::GetColorU32(ImGuiCol_ButtonHovered);
+		    ImGui::Spinner("##spinner", 8, 4, col);
+		}
+		if(ImGui::Button("Uncache"))
+		{
+		    std::thread t([this]()
+		    {
+			hasclicked_cache[1] = true;
+			unload_cache_files(entryarray[selected].directory);
+			hasclicked_cache[1] = false;
+		    });
+		    t.detach();
+		}
+		if(hasclicked_cache[1])
+		{
+		    ImGui::SameLine(0, 1 * ImGui::GetStyle().ItemSpacing.x);
+		    const ImU32 col = ImGui::GetColorU32(ImGuiCol_ButtonHovered);
+		    ImGui::Spinner("##spinner", 8, 4, col);
+		}
+	    }
             ImGui::TextWrapped(entryarray[selected].description.c_str(), 0);
         }
         ImGui::EndChild();
@@ -97,6 +134,7 @@ void GUI::init()
         string bannerpng = xdg::config::home() + "/gamelauncher/img/" + entryarray[0].iconname + "_banner";
         LoadTextureFromFile(bannerpng, &banner_texture, 1, 1);
     }
+    set_prio();
 }
 
 void GUI::clickedgame(std::size_t i)

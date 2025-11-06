@@ -3,9 +3,11 @@
 
 #include <string>
 #include <vector>
+#include <set>
 #include <imgui.h>
 using std::string;
 using std::vector;
+using std::set;
 
 struct entry
 {
@@ -15,6 +17,7 @@ struct entry
     vector<string> launch;
     string iconname;
     ImTextureID icon_texture = 0; // API steamgriddb.com/
+    set<string> directory;
 };
 
 vector<entry> parse_config();

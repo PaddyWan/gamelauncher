@@ -126,6 +126,8 @@ vector<entry> parse_config()
                     }
                     else if(p.first == "files")
                         add = add && std::filesystem::exists(p.second);
+		    else if(p.first == "directory")
+			e.directory.insert(string{p.second});
                 }
                 if(add)
                     if(alreadyhad.insert(e.id).second)//in case we have a steam.ini auto generated and one custom.ini self made

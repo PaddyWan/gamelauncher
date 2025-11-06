@@ -22,6 +22,7 @@ class GUI
         std::size_t selected = static_cast<std::size_t>(-1);
         std::size_t highlight = static_cast<std::size_t>(-1);
         int hasclicked = 0;
+        bool hasclicked_cache[2] = {false, false};
 };
 
 #endif//GUI_HPP
