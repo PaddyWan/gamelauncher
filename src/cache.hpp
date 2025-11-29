@@ -8,7 +8,6 @@ using std::string;
 using std::vector;
 using std::set;
 
-void set_prio();
 set<string> get_cache_files(const set<string>& files);
 void load_cache_files(const set<string>& files);
 void unload_cache_files(const set<string>& files);

@@ -134,7 +134,6 @@ void GUI::init()
         string bannerpng = xdg::config::home() + "/gamelauncher/img/" + entryarray[0].iconname + "_banner";
         LoadTextureFromFile(bannerpng, &banner_texture, 1, 1);
     }
-    set_prio();
 }
 
 void GUI::clickedgame(std::size_t i)

@@ -2,21 +2,11 @@
 
 #include <fcntl.h>
 #include <unistd.h>
-#include <linux/ioprio.h>
 #include <sys/mman.h>
-#include <sys/resource.h>
-#include <sys/syscall.h>
 #include <filesystem>
 #include <fstream>
 #include <string_view>
 
-
-void set_prio()
-{
-    setpriority(PRIO_PROCESS, 0, 19);
-    int ioprio = IOPRIO_PRIO_VALUE(IOPRIO_CLASS_IDLE, 0);
-    syscall(SYS_ioprio_set, IOPRIO_WHO_PROCESS, 0, ioprio);
-}
 
 bool equal_variable(const unsigned char* begin, const unsigned char* end, unsigned char var)
 {
