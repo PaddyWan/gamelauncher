@@ -11,6 +11,12 @@ class GUI
         bool isDone();
         void minimize();
         void run();
+
+        void set_select(std::size_t i);
+        void set_label();
+        void push_play();
+        void push_cache();
+        void push_uncache();
     private:
         void init();
         void clickedgame(std::size_t i);
